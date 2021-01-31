@@ -16,12 +16,12 @@ const PORT = process.env.PORT || 3003;
 const db = knex({
     client: 'pg',
     connection: {
-      //host : '127.0.0.1', // 127.0.0.1 same as localhost , need to change while deploing to thers server
-      //user : 'asif.e.iqbal',
-      //password : '',
-      //database : 'smart-brain',
-      connectionString: process.env.DATABASE_URL,
-      ssl: true
+      host : 'postgresql-rugged-07718', // 127.0.0.1 same as localhost , need to change while deploing to thers server
+      user : 'asif.e.iqbal',
+      password : '',
+      database : 'smart-brain',
+      //connectionString: process.env.DATABASE_URL,
+      //ssl: true
     }
 });
 
