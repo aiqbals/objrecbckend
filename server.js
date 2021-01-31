@@ -11,7 +11,7 @@ const image = require('./controlers/image');
 // destructuring - when want to have more fn from image.js file
 
 const PORT = process.env.PORT || 3003;
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0; 
+//process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0; 
 
 const db = knex({
     client: 'pg',
