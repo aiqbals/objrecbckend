@@ -20,6 +20,8 @@ const db = knex({
     }
 });
 
+const PORT = process.env.PORT || 5000;
+
 db.select ('*') .from ('users').then( data => {
     //console.log(data);
 });
@@ -66,8 +68,8 @@ app.post('/imageurl', (req, res) => {image.handleApiCall(req, res)} )
 
 //defining server port - 
 //to define dynamic port not hardcoded - use env variable process.env to have the port from the external server else 3000
-app.listen(process.env.PORT || 3003, () => {
-    console.log(`App is running on port ${process.env.PORT}` ); 
+app.listen(PORT, () => {
+    console.log(`App is running on port ${PORT}` ); 
 }) 
 
 
