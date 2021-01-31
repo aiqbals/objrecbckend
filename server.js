@@ -65,9 +65,9 @@ app.post('/imageurl', (req, res) => {image.handleApiCall(req, res)} )
 //Dependency injection - so that import fun has all the necessary dependecy
 
 //defining server port - 
-//to define dynamic port not hardcoded - use env variable process.env
-app.listen(3003, () => {
-    console.log('App is running on port 3003');
+//to define dynamic port not hardcoded - use env variable process.env to have the port from the external server else 3000
+app.listen(process.env.PORT || 3003, () => {
+    console.log(`App is running on port ${process.env.PORT}` ); 
 }) 
 
 
