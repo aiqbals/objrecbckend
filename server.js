@@ -1,0 +1,81 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt-nodejs');
+const cors = require('cors');
+const knex = require('knex');
+
+const register = require('./controlers/register');
+const signin = require('./controlers/signin');
+const profile = require('./controlers/profile');
+const image = require('./controlers/image'); 
+// destructuring - when want to have more fn from image.js file
+
+const db = knex({
+    client: 'pg',
+    connection: {
+      host : '127.0.0.1', // same as localhost
+      user : 'asif.e.iqbal',
+      password : '',
+      database : 'smart-brain'
+    }
+});
+
+db.select ('*') .from ('users').then( data => {
+    //console.log(data);
+});
+
+const app = express();
+app.use(bodyParser.json()); //middlewire - to parse receved fronend data into json object
+app.use(cors()); // another middlewire - security purpose
+
+const database = {
+    users: [
+        { 
+            id: 123,
+            name: 'Asif',
+            email: 'abd@gmx.de',
+            password: 'test',
+            entries: 0,
+            joined: new Date()
+        },
+        {
+            id: 124,
+            name: 'Lanny',
+            email: 'lan@gmx.de',
+            password: 'test2',
+            entries: 0,
+            joined: new Date()
+        }
+    ],
+    login: [
+        {
+            id: '',
+            hash: '',
+            email: ''
+        }
+    ]
+}
+
+app.get('/', (req, res) => { res.send(database.users)})
+app.post('/signin', signin.handleSignin(db, bcrypt)) //use this advance JS or use following syntax
+app.post('/register', (req, res) => {register.handleRegister(req, res, db, bcrypt)} )
+app.get('/profile/:id', (req, res) => {profile.handleProfile(req, res, db)} )
+app.put('/image', (req, res) => {image.handleImage(req, res, db)} )
+app.post('/imageurl', (req, res) => {image.handleApiCall(req, res)} )
+//Dependency injection - so that import fun has all the necessary dependecy
+
+//defining server port - 
+//to define dynamic port not hardcoded - use env variable process.env
+app.listen(3003, () => {
+    console.log('App is running on port 3003');
+}) 
+
+
+//planning api or api design
+/* 
+   for root route --> res = this is working! 
+   for signin route --> POST -- success/fail
+   for register route --> POST -- user
+   for profile/:userID route --> GET -- user
+   for image --> PUT -- user
+*/
