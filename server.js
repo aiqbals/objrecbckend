@@ -10,17 +10,21 @@ const profile = require('./controlers/profile');
 const image = require('./controlers/image'); 
 // destructuring - when want to have more fn from image.js file
 
+const PORT = process.env.PORT || 3003;
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0; 
+
 const db = knex({
     client: 'pg',
     connection: {
-      host : '127.0.0.1', // same as localhost
-      user : 'asif.e.iqbal',
-      password : '',
-      database : 'smart-brain'
+      //host : '127.0.0.1', // 127.0.0.1 same as localhost , need to change while deploing to thers server
+      //user : 'asif.e.iqbal',
+      //password : '',
+      //database : 'smart-brain',
+      connectionString: process.env.DATABASE_URL,
+      ssl: true
     }
 });
 
-const PORT = process.env.PORT || 3003;
 
 db.select ('*') .from ('users').then( data => {
     //console.log(data);
