@@ -20,7 +20,7 @@ const db = knex({
     }
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3003;
 
 db.select ('*') .from ('users').then( data => {
     //console.log(data);
