@@ -71,7 +71,7 @@ app.post('/register', (req, res) => {register.handleRegister(req, res, db, bcryp
 app.get('/profile/:id', (req, res) => {profile.handleProfile(req, res, db)} )
 app.put('/image', (req, res) => {image.handleImage(req, res, db)} )
 app.post('/imageurl', (req, res) => {image.handleApiCall(req, res)} )
-//Dependency injection - so that import fun has all the necessary dependecy
+//Dependency injection - so that import fn has all the necessary dependecy
 
 //defining server port - 
 //to define dynamic port not hardcoded - use env variable process.env to have the port from the external server else 3000
