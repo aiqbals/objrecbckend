@@ -1,6 +1,6 @@
 const handleRegister = ((req, res, db, bcrypt) => {
     const { email, password, name } = req.body; 
-    //data received from fronend
+    //data received from frontend
     if( !email || !password || !name) {
         return res.status(400).json('user/pass doesnt match')
     }
