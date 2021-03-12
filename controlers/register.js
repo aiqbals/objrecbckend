@@ -27,7 +27,8 @@ const handleRegister = ((req, res, db, bcrypt) => {
         })
         .catch(err => res.status(400).json('Unable to register'))
     }) 
-    // check transaction in knex documentation - is used when two or more things needs to be done at a time
+    // check transaction in knex documentation - is used when two or more things 
+    //needs to be done at a time
    
     /* bcrypt.hash(password, null, null, function(err, hash) {
         //console.log(hash);
